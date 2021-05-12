@@ -178,12 +178,14 @@ void People::admin() {
 						break;
 					else
 						continue;
-					system("cls");
 				}
 				else
 					cout << "No approvals are pending";
 			}
 		}
+	}
+	else {
+		cout << "Password is incorrect. Please try again!";
 	}
 }
 
@@ -193,7 +195,7 @@ int main() {
 	int n,choose, family_members, Patient_id;
 	do {
 	again:
-		system("cls");
+		//system("cls");
 		cout << "\n..........................................................................................................";
 		cout << "\n                                               THYROCARE                                                  ";
 		cout << "\n                                       ........................                                           ";
