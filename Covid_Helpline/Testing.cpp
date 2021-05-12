@@ -113,8 +113,8 @@ void People::view_report(int PatientID) {
 				cout << "\nD - 37 / 1, TTC, MIDC, Turbhe,                                                     The Trust, The Truth";
 				cout << "\nNAVI MUMBAI - 400 703                                                              .....................";
 				cout << "\n__________________________________________________________________________________________________________";
-				cout << "\n	                                  RTPCR TEST REPORTS                                     ";
-				cout << "\t\t\t\t\t\t\t\tMODULAR DIAGNOSTIC LABORATORY";
+				cout << "\n	                                      RTPCR TEST REPORTS                                                 ";
+				cout << "\n\t                                  MODULAR DIAGNOSTIC LABORATORY ";
 				cout << "\n----------------------------------------------------------------------------------------------------------";
 				cout << "\nTEST NAME: COVID-19 RT PCR \nREF BY: SELF";
 				cout << "\n__________________________________________________________________________________________________________";
