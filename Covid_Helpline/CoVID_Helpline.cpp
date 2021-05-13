@@ -41,7 +41,7 @@ public:
 	string date() {
 		//time_t result = time(NULL);
 		char str[26];
-		//ctime_s(str, sizeof str, &result);
+		//time_t(str, sizeof str, &result);
 		return str;
 	}
 };
@@ -173,7 +173,13 @@ void Zones :: display(){
         cout<<"\nNo data currently available";
     else{
         cout<<"\n\t\t--------------------------Zones---------------------------------\n";
-        cout<<"\nRED\t\t\t\tORANGE\t\t\t\tGREEN\n";
+        changeColor(4);
+        cout<<"\nRED";
+        changeColor(14);
+        cout<<"\t\t\t\tORANGE";
+        changeColor(2);
+        cout<<"\t\t\t\tGREEN\n";
+        changeColor(15);
         while(temp != NULL){
             if(temp->priority == 3){
 				changeColor(4); 
@@ -253,16 +259,25 @@ void queue::enqueue(){           //add elemt into queue
    void queue :: confirmList(){
   node *temp;
    int srNo=1;
+   if(front == NULL)
+   		cout<<"Empty list!";
    temp = front;
-   cout<<"\nSrNo\tReg No\t\tName\t\tAge\tAadhar No\t\tContact No\n";
-   cout<<"---------------------------------------------------------------------\n";
+   cout<<"\n----------------------------------------------------------------------------------------------";
+    cout<<"\nYour Registration is Confirmed!!\n";
+    cout<<"You are getting vaccinated!\n\n";
+    cout<<"-----------------------------------------------------------------------------------------------\n";
+   cout<<"\nSrNo\tReg No\t\tName\t\tAge\tContact No\tAadhar No\t  PAN no\n";
+   cout<<"------------------------------------------------------------------------------------------------\n";
    while(temp!=NULL){
-	cout<<srNo<<"\t"<<temp->r<<"\t\t"<<temp->nm<<"\t"<<temp->age<<"\t"<<temp->aadhar<<"\t"<<temp->phn;
+	cout<<srNo<<"\t"<<temp->r<<"\t\t"<<temp->nm<<"\t\t"<<temp->age<<"\t"<<temp->aadhar<<"\t"<<temp->phn<<"\t"<<temp->pan;
 	temp = temp->next;
 	cout<<"\n";
 	srNo++;
    }
-   cout<<"____________________________________________________________________";
+   cout<<"\n\n\nYou can download your certificate from this link after vaccination:";
+	cout<<"\nhttps://getcirtificate.com\n";
+	cout<<"\n----------------------------------------------------------------------------------------------";
+   cout<<"\n________________________________________________________________________________________________";
   
 }	
 
@@ -365,12 +380,13 @@ Covid_Testing* People::view_report(int PatientID) {
 		}
 		if (flag == 0) {
 			cout << "No record Found!";
+			return 0;
 		}
 	}
-	if(s==1)
+	//if(s==1)
 	    return temp;
-	else
-	    return NULL;
+	//else
+	  //  return NULL;
 }
 
 //------------------------------------------ADMIN-----------------------------------------
@@ -524,15 +540,19 @@ int main() {
 	Covid_Testing *ptr;
 	int n,choose, family_members, Patient_id, s;
 	char chc;
-	cout<<"\n\t\t*******************CoVID HELPLINE**********************";
-	cout<<"\n\n";
+	//cout<<"\n\t\t*******************CoVID HELPLINE**********************";
+	//cout<<"\n\n";
 	do{
 	   menu:
+	   	//system("cls");
+	   	cout<<"\n\t\t*******************CoVID HELPLINE**********************";
+	    cout<<"\n\n";
 	   cout<<"\t\t1. Zones\n\t\t2.Hospital\n\t\t3.Testing\n\t\t4.Vaccination\n\n";
 	   cout<<"\t\tEnter your choice: ";
 	   cin>>ch;
 	   switch(ch){
-	        case 1: do{
+	        case 1: //system("cls");
+					do{
 	        			system("cls");
                         cout<<"\n\t\t----------------------Zones-----------------------";
                         cout<<"\n\t\tEnter City:";
@@ -550,6 +570,7 @@ int main() {
                         cin>>chc;
                     }while(chc!='N' && chc!='n');
                     z.display();
+                    //system("cls");
                     break;
             case 2: system("cls");
 					cout<<"\n\t\t------------------Hospitals-------------------- ";
@@ -569,13 +590,14 @@ int main() {
 	}while(ch!=5);
 	do{
 	    hosp:
-        cout<<"\n\t\t1.Add Hospital\n\t\t2.Delete Hospital\n\t\t3.Bed Availability\n\t\t4.View Hospitals\n\t\t5.Exit";
+	    //system("cls");
+        cout<<"\n\n\t\t1.Add Hospital\n\t\t2.Delete Hospital\n\t\t3.Bed Availability\n\t\t4.View Hospitals\n\t\t5.Exit";
         cout<<"\n\t\t---------------------------------------------------------------------";
         cout<<"\n\t\tEnter your choice: ";
         cin>>ch;
         switch(ch){
             case 1: cout<<"\n\t\tEnter hospital details: ";
-            		cout<<"\n\t----------------------------------------------------";
+            		cout<<"\n\t\t----------------------------------------------------";
                     cout<<"\n\t\tName: ";
                     cin.ignore();
                     getline(cin, nm);
@@ -584,22 +606,22 @@ int main() {
                     cout<<"\n\t\tVacant Bed Count: ";
                     cin>>bed;
                     h.addHospital(nm, ct, bed);
-                    cout<<"\n\t_______________________________________________________________________________";
+                    cout<<"\n\t\t_______________________________________________________________________________";
                     break;
             case 2: cout<<"\n\t\tEnter the name of Hospital: ";
                     cin.ignore();
                     getline(cin, nm);
                     h.removeHospital(nm);
-                    cout<<"\n\t_______________________________________________________________________________";
+                    cout<<"\n\t\t_______________________________________________________________________________";
                     break;
             case 3: cout<<"\n\t\tEnter city: ";
                     cin.ignore();
                     getline(cin, ct);
                     h.checkBedAvailability(ct);
-                    cout<<"\n\t_______________________________________________________________________________";
+                    cout<<"\n\t\t_______________________________________________________________________________";
                     break;
             case 4: cout<<"\n\t\tHospitals ";
-            		cout<<"\n\t----------------------------------------------------------";
+            		cout<<"\n\t\t----------------------------------------------------------";
                     h.covidHospitals();
                     break;
             case 5: break;
@@ -643,6 +665,7 @@ int main() {
 				ptr = p.view_report(Patient_id);
 				cout<<ptr->report_status;
 				s = ptr->report_status;
+				//cout<<s;
 				if(s==1){
 				    cout<<"\nYou are tested CoVid Positive...\n";
 				    cout<<"Do you want to get admitted in the hospital? Y/N";
@@ -651,8 +674,12 @@ int main() {
 				        case 'Y': h.admitPatient(ptr);
 				                  break;
 				        case 'N': cout<<"\nStay Home Quarantined. Wear mask. Take appropriate precautions...";
+				        		  goto again;
 				                  break;
 				    }
+				}
+				else{
+					goto again;
 				}
 				break;
 			case 3:system("cls");
@@ -690,7 +717,7 @@ int main() {
 	case 1:
 		do{
 			cout<<"\n***********MENU***********";
-			cout<<"\nwhich is your area:\n";
+			cout<<"\nWhich is your area:\n";
 		cout<<"\n1.PUNE\t\t2.MUMBAI\n3.JALGOAN\t4.NAGPUR\n5.EXIT\n";
 		cout<<"\n\nEnter your choice:\n";
 		cin>>ch;
@@ -845,5 +872,6 @@ int main() {
             	break;
 				}
 		}while(ch!=4);
+		goto menu;
 	return 0;
 }
